@@ -5,8 +5,10 @@ using namespace std;
 
 int main()
 {
-	int returnCode;
+    int returnCode;
     int i = 5;
+
+    i = 6;
 
     if(i != 6)
     {
