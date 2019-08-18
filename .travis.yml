@@ -8,4 +8,4 @@ os:
   - linux
   - osx
 
-script: make && make test && ./test
+script: make && make test && ./test/build/testbin
