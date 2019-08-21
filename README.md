@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/rjesquivias/Sailer.svg?branch=master)](https://travis-ci.org/rjesquivias/Sailer)
+<br />
+
 # Sailer
 
 sail·er
