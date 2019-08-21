@@ -1,25 +1,14 @@
-#include <iostream>
-#include <assert.h>
+#include "gtest/gtest.h"
 
-using namespace std;
+namespace {
 
-int main()
-{
-    int returnCode;
-    int i = 5;
+TEST(BuildTest, BreaksBuild) {
+  EXPECT_EQ(0, 1);
+}
 
-    i = 6;
+}
 
-    if(i != 6)
-    {
-        cout << "main failed" << endl;
-        returnCode = -1;
-    }
-    else
-    {
-    	cout << "main passed case" << endl;
-    	returnCode = 0;
-    }
-
-    return returnCode;
+int main(int argc, char **argv) {
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }

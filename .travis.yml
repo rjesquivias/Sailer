@@ -1,14 +1,14 @@
 language: c++
 
 compiler:
-  - clang
   - gcc
 
 os:
-  - linux
   - osx
 
-script: make && make test && ./test/build/testbin
+before_install: ./install_dependencies.sh
+
+script: make && ./test/build/SailerTest
 
 after_success:
   - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
