@@ -1,7 +1,10 @@
 cmake_minimum_required (VERSION 2.6)
 set (CMAKE_CXX_STANDARD 11)
 project (SailerTest)
-add_executable(SailerTest mainTest.cpp)
+
+# Recursively store all cpp files in the source_list variable
+file(GLOB_RECURSE source_list "src/*.cpp")
+add_executable(SailerTest ${source_list})
 
 # sets GTEST_INCLUDE_DIRS and GTEST_LIBRARIES
 find_package( GTest REQUIRED )      
