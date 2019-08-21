@@ -10,6 +10,9 @@ cmake .. -DBUILD_GTEST=ON -DBUILD_SHARED_LIBS=ON
 make
 make install
 
-cd ../../test/build
+cd ../../test
+mkdir build
+cd build
+
 cmake ..
 make
