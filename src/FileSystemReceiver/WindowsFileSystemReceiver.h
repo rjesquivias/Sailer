@@ -3,6 +3,7 @@
 
 #include "FileSystemReceiver.h"
 
+#include <filesystem>
 #include <string>
 
 class WindowsFileSystemReceiver : public FileSystemReceiver
@@ -11,7 +12,7 @@ public:
     WindowsFileSystemReceiver() {}
     ~WindowsFileSystemReceiver() {}
 
-    void listDirectory() {}
+    void listDirectory();
     void changeDirectory(std::string) {}
     void execute(std::string) {}
     bool isFileAtCurrentDirectory(std::string) { return true; }

@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 2.6)
-set (CMAKE_CXX_STANDARD 11)
+set (CMAKE_CXX_STANDARD 17)
 project (SailerTest)
 
 # Recursively store all cpp files in the source_list variable
