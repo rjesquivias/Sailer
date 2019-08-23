@@ -6,8 +6,6 @@ compiler:
 os:
   - osx
 
-before_install: ./install_dependencies.sh
-
 script: ./build.sh && ./test/build/SailerTest
 
 after_success:
