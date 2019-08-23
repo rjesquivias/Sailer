@@ -6,13 +6,13 @@ cd googletest
 mkdir build
 cd build
 
-cmake .. -DBUILD_GTEST=ON -DBUILD_SHARED_LIBS=ON
+cmake .. -DBUILD_GTEST=ON -DBUILD_GMOCK=ON -DBUILD_SHARED_LIBS=ON
 make
 make install
 
-cd ../../test
-mkdir build
-cd build
+#cd ../../test
+#mkdir build
+#cd build
 
-cmake ..
-make
+#cmake ..
+#make
