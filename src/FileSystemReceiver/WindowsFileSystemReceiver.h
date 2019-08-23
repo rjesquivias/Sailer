@@ -14,7 +14,7 @@ public:
     void listDirectory() {}
     void changeDirectory(std::string) {}
     void execute(std::string) {}
-    bool isFileAtCurrentDirectory() { return true; }
+    bool isFileAtCurrentDirectory(std::string) { return true; }
     bool isFileAtGivenDirectory(std::string) { return true; }
 };
 
