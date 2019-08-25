@@ -1,6 +1,7 @@
 #pragma once
 
-class FileSystemListDirectory {
+class FileSystemListDirectory 
+{
 public:
     virtual ~FileSystemListDirectory() {}
 

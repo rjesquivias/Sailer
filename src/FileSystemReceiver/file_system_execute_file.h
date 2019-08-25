@@ -2,7 +2,8 @@
 
 #include <string>
 
-class FileSystemExecuteFile {
+class FileSystemExecuteFile 
+{
 public:
     virtual ~FileSystemExecuteFile() {}
 

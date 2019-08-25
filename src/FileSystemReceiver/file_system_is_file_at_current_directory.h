@@ -2,7 +2,8 @@
 
 #include <string>
 
-class FileSystemIsFileAtCurrentDirectory {
+class FileSystemIsFileAtCurrentDirectory
+{
 public:
     virtual ~FileSystemIsFileAtCurrentDirectory() {}
 
