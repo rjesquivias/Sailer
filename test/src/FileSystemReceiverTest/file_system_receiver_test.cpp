@@ -1,5 +1,5 @@
-#include "../../../src/FileSystemReceiver/FileSystemReceiver.h"
-#include "MockFileSystemReceiver.h"
+#include "../../../src/FileSystemReceiver/file_system_receiver.h"
+#include "mock_file_system_receiver.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
@@ -18,8 +18,8 @@ TEST(FileSystemReceiverTest, ShouldBeConstructed)
 TEST(FileSystemReceiverTest, ShouldListDirectory)
 {
     MockFileSystemReceiver fsr;
-    EXPECT_CALL(fsr, listDirectory())
+    EXPECT_CALL(fsr, ListDirectory())
         .Times(AtLeast(1));
 
-    fsr.listDirectory();
+    fsr.ListDirectory();
 }
