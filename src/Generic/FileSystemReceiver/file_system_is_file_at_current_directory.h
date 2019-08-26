@@ -7,5 +7,5 @@ class FileSystemIsFileAtCurrentDirectory
 public:
     virtual ~FileSystemIsFileAtCurrentDirectory() {}
 
-    virtual bool IsFileAtCurrentDirectory() = 0;
+    virtual bool IsFileAtCurrentDirectory(std::string) = 0;
 };

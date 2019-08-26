@@ -1,5 +1,6 @@
 cmake_minimum_required (VERSION 2.6)
-set (CMAKE_CXX_STANDARD 11)
+set (CMAKE_CXX_STANDARD 17)
 project (Sailer)
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/test/findGmock)
-add_executable(Sailer src/main.cpp)
+
+file(GLOB_RECURSE source_list "src/main.cpp" "src/Generic/*.cpp" "src/Generic/*.h")
+add_executable(Sailer ${source_list})

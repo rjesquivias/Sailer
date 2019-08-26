@@ -20,6 +20,6 @@ public:
     virtual void ListDirectory() = 0;
     virtual void ChangeDirectory(std::string) = 0;
     virtual void Execute(std::string) = 0;
-    virtual bool IsFileAtCurrentDirectory() = 0;
+    virtual bool IsFileAtCurrentDirectory(std::string) = 0;
     virtual bool IsFileAtGivenDirectory(std::string) = 0;
 };

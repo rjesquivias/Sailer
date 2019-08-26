@@ -1,6 +1,6 @@
 #pragma once
 
-#include "file_system_receiver.h"
+#include "../../Generic/FileSystemReceiver/file_system_receiver.h"
 
 class WindowsFileSystemReceiver : public FileSystemReceiver
 {
@@ -11,6 +11,6 @@ public:
     void ListDirectory() override {}
     void ChangeDirectory(std::string) override {}
     void Execute(std::string) override {}
-    bool IsFileAtCurrentDirectory() override  { return true; }
+    bool IsFileAtCurrentDirectory(std::string) override  { return true; }
     bool IsFileAtGivenDirectory(std::string) override { return true; }
 };
