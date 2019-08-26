@@ -3,14 +3,17 @@
 
 namespace fs = std::filesystem;
 
-void WindowsFileSystemReceiver::listDirectory()
+void WindowsFileSystemReceiver::ListDirectory()
 {
     std::string filesInDirectory = "C:\\" + '\n';
 
 	for (auto& entry : fs::directory_iterator("C:\\Users\\RJ\\source\\repos\\Sailer"))
 	{
-		if (entry.is_directory()) filesInDirectory += "<DIR>  ";
-		else filesInDirectory += "<FILE> ";
+		if (entry.is_directory()) 
+			filesInDirectory += "<DIR>  ";
+		else filesInDirectory 
+			+= "<FILE> ";
+			
 		filesInDirectory += entry.path().generic_string();
 		filesInDirectory += '\n';
 	}
