@@ -10,9 +10,9 @@ void WindowsFileSystemReceiver::ListDirectory()
 	for (auto& entry : fs::directory_iterator("C:\\Users\\RJ\\source\\repos\\Sailer"))
 	{
 		if (entry.is_directory()) 
-			filesInDirectory += "<DIR>  ";
-		else filesInDirectory 
-			+= "<FILE> ";
+		    filesInDirectory += "<DIR>  ";
+		else 
+		    filesInDirectory += "<FILE> ";
 			
 		filesInDirectory += entry.path().generic_string();
 		filesInDirectory += '\n';
