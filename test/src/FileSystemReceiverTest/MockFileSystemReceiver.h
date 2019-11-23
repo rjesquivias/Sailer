@@ -7,9 +7,9 @@
 class MockFileSystemReceiver : public FileSystemReceiver
 {
 public:
-    MOCK_METHOD(void, listDirectory, (), (override));
-    MOCK_METHOD(void, changeDirectory, (std::string), (override));
-    MOCK_METHOD(void, execute, (std::string), (override));
+    MOCK_METHOD(ReturnTypes, listDirectory, (), (override));
+    MOCK_METHOD(ReturnTypes, changeDirectory, (std::string), (override));
+    MOCK_METHOD(ReturnTypes, execute, (std::string), (override));
     MOCK_METHOD(bool, isFileAtCurrentDirectory, (), (override));
     MOCK_METHOD(bool, isFileAtGivenDirectory, (std::string), (override));
 };

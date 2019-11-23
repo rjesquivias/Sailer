@@ -3,19 +3,18 @@
 
 #include "FileSystemReceiver.h"
 
-#include <string>
-
 class WindowsFileSystemReceiver : public FileSystemReceiver
 {
 public:
-    WindowsFileSystemReceiver() {}
-    ~WindowsFileSystemReceiver() {}
+    WindowsFileSystemReceiver(std::shared_ptr<IFileSystem> fileSystem) { this->fileSystem = fileSystem; }
+    ~WindowsFileSystemReceiver() { }
 
-    void listDirectory() {}
-    void changeDirectory(std::string) {}
-    void execute(std::string) {}
+	ReturnTypes listDirectory() { return ReturnTypes::SUCCESS;  }
+    ReturnTypes changeDirectory(std::string);
+    ReturnTypes execute(std::string) { return ReturnTypes::SUCCESS; }
     bool isFileAtCurrentDirectory() { return true; }
     bool isFileAtGivenDirectory(std::string) { return true; }
+
 };
 
 #endif

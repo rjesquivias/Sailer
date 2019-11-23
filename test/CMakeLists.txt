@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 2.6)
-set (CMAKE_CXX_STANDARD 11)
+set (CMAKE_CXX_STANDARD 17)
 project (SailerTest)
 
 # Recursively store all cpp files in the source_list variable
@@ -33,5 +33,5 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
                         "${gmock_SOURCE_DIR}/include")
 endif()
 
-add_executable(SailerTest ${source_list})
+add_executable(SailerTest ${source_list} ../src/FileSystemReceiver/WindowsFileSystemReceiver.cpp)
 target_link_libraries(SailerTest gtest gmock_main)
