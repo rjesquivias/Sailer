@@ -6,7 +6,7 @@ compiler:
 os:
   - osx
 
-script: ./build.sh && ./test/build/SailerTest
+script: ./buildTests.sh && ./test/build/SailerTest
 
 after_success:
   - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh

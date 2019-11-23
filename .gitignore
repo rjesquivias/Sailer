@@ -341,3 +341,4 @@ CMakeFiles/*
 test/CMakeFiles/*
 test/googletest*
 *.sln
+test/build/googletest-src/
