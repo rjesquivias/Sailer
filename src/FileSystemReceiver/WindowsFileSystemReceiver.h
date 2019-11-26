@@ -12,8 +12,8 @@ public:
 	ReturnTypes listDirectory() { return ReturnTypes::SUCCESS;  }
     ReturnTypes changeDirectory(std::string);
     ReturnTypes execute(std::string);
-    bool isFileAtCurrentDirectory() { return true; }
-    bool isFileAtGivenDirectory(std::string) { return true; }
+    bool getFile() const { return true; }
+    bool putFile(std::string) { return true; }
 
 };
 
