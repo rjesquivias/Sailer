@@ -10,7 +10,7 @@ public:
     MOCK_METHOD(ReturnTypes, listDirectory, (), (override));
     MOCK_METHOD(ReturnTypes, changeDirectory, (std::string), (override));
     MOCK_METHOD(ReturnTypes, execute, (std::string), (override));
-    MOCK_METHOD(bool, getFile, (), (override));
+    MOCK_METHOD(bool, getFile, (), (const, override));
     MOCK_METHOD(bool, putFile, (std::string), (override));
 };
 

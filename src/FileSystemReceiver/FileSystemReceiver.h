@@ -22,11 +22,11 @@ public:
     virtual ReturnTypes listDirectory() = 0;
     virtual ReturnTypes changeDirectory(std::string) = 0;
     virtual ReturnTypes execute(std::string) = 0;
-    virtual bool getFile() = 0;
+    virtual bool getFile() const = 0;
     virtual bool putFile(std::string) = 0;
 
     inline void setDirectory(std::string d) { directory = d; }
-    inline std::string getDirectory() { return directory; }
+    inline std::string getDirectory() const { return directory; }
 
 protected:
 

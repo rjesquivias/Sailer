@@ -6,5 +6,5 @@ class FileSystemGet {
 public:
     virtual ~FileSystemGet() {}
 
-    virtual bool getFile() = 0;
+    virtual bool getFile() const = 0;
 };
