@@ -79,3 +79,11 @@ ReturnTypes WindowsFileSystemReceiver::changeDirectory(std::string dir)
         return ReturnTypes::INVALID_DIRECTORY;
     } 
 }
+
+ReturnTypes WindowsFileSystemReceiver::execute(std::string file)
+{
+    if(file.empty()) return ReturnTypes::INVALID_INPUT;
+
+    bool status = fileSystem->isAbsolutePath(file) ? fileSystem->execute(file) : fileSystem->execute(getDirectory() + file);
+    return status ? ReturnTypes::SUCCESS : ReturnTypes::FAILURE;
+}

@@ -15,24 +15,6 @@ class MockFileSystem : public IFileSystem
         { 
             if(directory.empty()) return false;
 
-            // Here are some directories that exist in our fake fileSystem
-            // These are valid with or without the ending backslash
-            std::vector<std::string> fileSystemMap = 
-            { 
-                "C:\\",
-                "C:\\Users\\",
-                "C:\\Users\\user\\",
-                "C:\\Users\\user\\source\\",
-                "C:\\Users\\user\\Desktop\\",
-                "C:\\Users\\user\\Desktop\\projects\\",
-                "C:\\Users\\user\\Desktop\\projects\\commando\\",
-                "C:\\Users\\user\\Documents\\",
-                "C:\\Users\\user\\Documents\\Visual Studio 2019\\",
-                "C:\\Users\\user\\Documents\\Visual Studio 2019\\Code Snippets\\",
-                "C:\\Users\\user\\Documents\\Visual Studio 2019\\Code Snippets\\Visual C++\\",
-                "C:\\Users\\user\\Documents\\Visual Studio 2019\\Code Snippets\\Visual C++\\My Code Snippets\\"
-            };
-
             for(auto validDirectory : fileSystemMap)
             {
 				//std::cout << "comparing " << validDirectory << " to " << directory << std::endl;
@@ -64,4 +46,42 @@ class MockFileSystem : public IFileSystem
          
             return true;
         }
+
+        inline bool execute(std::string file)
+        {
+            for(auto validExecutable : executableMap)
+            {
+                if(file == validExecutable)
+                    return true;
+            }
+
+            return false;
+        }
+
+    private:
+            // Here are some directories that exist in our fake fileSystem
+            // These are valid with or without the ending backslash
+            std::vector<std::string> fileSystemMap = 
+            { 
+                "C:\\",
+                "C:\\Users\\",
+                "C:\\Users\\user\\",
+                "C:\\Users\\user\\source\\",
+                "C:\\Users\\user\\Desktop\\",
+                "C:\\Users\\user\\Desktop\\projects\\",
+                "C:\\Users\\user\\Desktop\\projects\\commando\\",
+                "C:\\Users\\user\\Documents\\",
+                "C:\\Users\\user\\Documents\\Visual Studio 2019\\",
+                "C:\\Users\\user\\Documents\\Visual Studio 2019\\Code Snippets\\",
+                "C:\\Users\\user\\Documents\\Visual Studio 2019\\Code Snippets\\Visual C++\\",
+                "C:\\Users\\user\\Documents\\Visual Studio 2019\\Code Snippets\\Visual C++\\My Code Snippets\\",
+                "C:\\Windows\\system32\\"
+            };
+
+            std::vector<std::string> executableMap = 
+            { 
+                "C:\\Windows\\system32\\Notepad.exe",
+                "C:\\Users\\user\\Desktop\\prefabs.txt",
+                "C:\\Users\\user\\Desktop\\netvar.html"
+            };
 };

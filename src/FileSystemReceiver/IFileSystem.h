@@ -6,4 +6,6 @@ public:
     virtual bool isDirectory(std::string) = 0;
 
     virtual bool isAbsolutePath(std::string) = 0;
+
+    virtual bool execute(std::string file) = 0;
 };
