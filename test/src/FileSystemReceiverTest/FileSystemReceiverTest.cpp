@@ -4,8 +4,6 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
-#include "../../../src/FileSystemReceiver/FileSystem.h"
-
 using ::testing::AtLeast;
 
 TEST(FileSystemReceiverTest, ShouldBeConstructed)
