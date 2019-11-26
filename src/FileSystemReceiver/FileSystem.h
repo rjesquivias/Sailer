@@ -1,7 +1,7 @@
 #pragma once
 
 #include <filesystem>
-#include <stdlib.h>
+#include <cstdlib>
 #include <string>
 namespace fs = std::filesystem;
 
