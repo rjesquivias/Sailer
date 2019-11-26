@@ -26,7 +26,7 @@ TEST(FileSystemReceiverTest, ShouldListDirectory)
 }
 
 // Windows Specific Tests
-TEST(WindowsFileSystemReceiverTest, TestChangeDirectory)
+TEST(WindowsFileSystemReceiverTest, TestChangeDirectoryCommand)
 {
     std::shared_ptr<IFileSystem> fileSystem = std::make_shared<MockFileSystem>();
     WindowsFileSystemReceiver fsr(fileSystem);
@@ -86,4 +86,57 @@ TEST(WindowsFileSystemReceiverTest, TestChangeDirectory)
 
 	fsr.changeDirectory("");
 	ASSERT_EQ(fsr.getDirectory(), "C:\\Users\\user\\Desktop\\projects\\");
+}
+
+TEST(WindowsFileSystemReceiverTest, TestExecuteCommand)
+{
+    std::shared_ptr<IFileSystem> fileSystem = std::make_shared<MockFileSystem>();
+    WindowsFileSystemReceiver fsr(fileSystem);
+
+	// We can you execute to run a handful of things
+	// 1) .exe
+	// 2) .txt
+	// 3) .html
+	// 4) .bat
+	// ... Anything that can be executed will be executed by this command
+
+	// Execution using absolute filepath
+	ReturnTypes r = fsr.execute("C:\\Windows\\system32\\Notepad.exe");
+	ASSERT_EQ(r, ReturnTypes::SUCCESS);
+
+	r = fsr.execute("dir");
+	ASSERT_EQ(r, ReturnTypes::FAILURE);
+
+	r = fsr.execute("C:\\Users\\user\\Desktop\\prefabs.txt");
+	ASSERT_EQ(r, ReturnTypes::SUCCESS);
+
+	r = fsr.execute("C:\\Users\\user\\Desktop\\netvar.html");
+	ASSERT_EQ(r, ReturnTypes::SUCCESS);
+
+    // Execution using relative filepath
+	if(fsr.changeDirectory("C:\\Users\\user\\Desktop\\") == ReturnTypes::SUCCESS)
+	{
+		r = fsr.execute("netvar.html");
+		ASSERT_EQ(r, ReturnTypes::SUCCESS); 
+	}
+	else
+	{
+		FAIL();
+	}
+	
+	r = fsr.execute("prefabs.txt");
+	ASSERT_EQ(r, ReturnTypes::SUCCESS);    
+
+	if(fsr.changeDirectory("C:\\Windows\\system32\\") == ReturnTypes::SUCCESS)
+	{
+		r = fsr.execute("Notepad.exe");
+		ASSERT_EQ(r, ReturnTypes::SUCCESS); 
+	}  
+	else
+	{
+		FAIL();
+	}
+
+	r = fsr.execute("pwned.exe");
+	ASSERT_EQ(r, ReturnTypes::FAILURE);     
 }
