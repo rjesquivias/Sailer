@@ -11,7 +11,7 @@ public:
 
 	ReturnTypes listDirectory() { return ReturnTypes::SUCCESS;  }
     ReturnTypes changeDirectory(std::string);
-    ReturnTypes execute(std::string) { return ReturnTypes::SUCCESS; }
+    ReturnTypes execute(std::string);
     bool getFile() const { return true; }
     bool putFile(std::string) { return true; }
 
