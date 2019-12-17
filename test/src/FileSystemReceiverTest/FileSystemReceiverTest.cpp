@@ -140,7 +140,7 @@ TEST(WindowsFileSystemReceiverTest, TestGetCommand)
 	// Validate that we correctly read the data from the filesystem
 	// and sent it through the communicator
 	char* history = mockCommunicator->getHistory();
-	for(int i = 0; i < 1232; i++)
+	for(int i = 0; i < mockCommunicator->getBufferSize() ; i++)
 	{
 		int* value = (int*)(history + i);
 		ASSERT_EQ(*value, i / 4); // Our mocked Communicator writes integers of incrementing values
@@ -155,7 +155,7 @@ TEST(WindowsFileSystemReceiverTest, TestGetCommand)
 	ASSERT_EQ(r, ReturnTypes::SUCCESS);
 
 	history = mockCommunicator->getHistory();
-	for(int i = 0; i < 1232; i++)
+	for(int i = 0; i < mockCommunicator->getBufferSize(); i++)
 	{
 		int* value = (int*)(history + i);
 		ASSERT_EQ(*value, i / 4);

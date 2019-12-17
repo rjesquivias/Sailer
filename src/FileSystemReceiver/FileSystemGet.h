@@ -8,4 +8,6 @@ public:
     virtual ~FileSystemGet() {}
 
     virtual ReturnTypes getFile(std::string fileName) const = 0;
+
+    const int bufSize = 1024;
 };

@@ -6,8 +6,12 @@
 class WindowsFileSystemReceiver : public FileSystemReceiver
 {
 public:
-    WindowsFileSystemReceiver(std::shared_ptr<IFileSystem> fileSystem, std::shared_ptr<ICommunicator> communication) 
-                             { this->fileSystem = fileSystem; this->communication = communication; }
+    explicit WindowsFileSystemReceiver(std::shared_ptr<IFileSystem> fileSystem, std::shared_ptr<ICommunicator> communication) 
+                             {
+                                 this->fileSystem = fileSystem;
+                                 this->communication = communication;
+                             }
+
     ~WindowsFileSystemReceiver() { }
 
 	ReturnTypes listDirectory() { return ReturnTypes::SUCCESS; }

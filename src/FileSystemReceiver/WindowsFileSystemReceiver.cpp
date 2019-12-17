@@ -93,7 +93,6 @@ ReturnTypes WindowsFileSystemReceiver::getFile(std::string fileName) const
     if(!fileSystem->isAbsolutePath(fileName))
         fileName = getDirectory() + fileName;
 
-    int bufSize = 1024; // TODO: Set to variable 
     char* buffer = new char[bufSize];
     int readPosition = 0;
     int bytesRead = 0;
