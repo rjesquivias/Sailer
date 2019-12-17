@@ -7,6 +7,7 @@
 #include "FileSystemPut.h"
 #include "FileSystemListDirectory.h"
 #include "IFileSystem.h"
+#include "../Communicator/ICommunicator.h"
 #include <string>
 #include <memory>
 
@@ -22,8 +23,8 @@ public:
     virtual ReturnTypes listDirectory() = 0;
     virtual ReturnTypes changeDirectory(std::string) = 0;
     virtual ReturnTypes execute(std::string) = 0;
-    virtual bool getFile() const = 0;
-    virtual bool putFile(std::string) = 0;
+    virtual ReturnTypes getFile(std::string fileName) const = 0;
+    virtual ReturnTypes putFile() const = 0;
 
     inline void setDirectory(std::string d) { directory = d; }
     inline std::string getDirectory() const { return directory; }
@@ -31,6 +32,7 @@ public:
 protected:
 
     std::shared_ptr<IFileSystem> fileSystem;
+    std::shared_ptr<ICommunicator> communication;
 
 private:
     std::string directory;

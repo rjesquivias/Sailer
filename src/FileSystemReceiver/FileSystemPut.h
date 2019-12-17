@@ -1,10 +1,11 @@
 #pragma once
 
+#include "ReturnTypes.h"
 #include <string>
 
 class FileSystemPut {
 public:
     virtual ~FileSystemPut() {}
 
-    virtual bool putFile(std::string) = 0;
+    virtual ReturnTypes putFile() const = 0;
 };

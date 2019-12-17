@@ -1,10 +1,11 @@
 #pragma once
 
+#include "ReturnTypes.h"
 #include <string>
 
 class FileSystemGet {
 public:
     virtual ~FileSystemGet() {}
 
-    virtual bool getFile() const = 0;
+    virtual ReturnTypes getFile(std::string fileName) const = 0;
 };

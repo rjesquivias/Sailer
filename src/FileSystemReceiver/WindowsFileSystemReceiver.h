@@ -6,14 +6,15 @@
 class WindowsFileSystemReceiver : public FileSystemReceiver
 {
 public:
-    WindowsFileSystemReceiver(std::shared_ptr<IFileSystem> fileSystem) { this->fileSystem = fileSystem; }
+    WindowsFileSystemReceiver(std::shared_ptr<IFileSystem> fileSystem, std::shared_ptr<ICommunicator> communication) 
+                             { this->fileSystem = fileSystem; this->communication = communication; }
     ~WindowsFileSystemReceiver() { }
 
-	ReturnTypes listDirectory() { return ReturnTypes::SUCCESS;  }
+	ReturnTypes listDirectory() { return ReturnTypes::SUCCESS; }
     ReturnTypes changeDirectory(std::string);
     ReturnTypes execute(std::string);
-    bool getFile() const { return true; }
-    bool putFile(std::string) { return true; }
+    ReturnTypes getFile(std::string fileName) const;
+    ReturnTypes putFile() const { return ReturnTypes::SUCCESS; }
 
 };
 

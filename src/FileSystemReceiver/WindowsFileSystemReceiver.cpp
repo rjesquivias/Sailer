@@ -87,3 +87,29 @@ ReturnTypes WindowsFileSystemReceiver::execute(std::string file)
     bool status = fileSystem->isAbsolutePath(file) ? fileSystem->execute(file) : fileSystem->execute(getDirectory() + file);
     return status ? ReturnTypes::SUCCESS : ReturnTypes::FAILURE;
 }
+
+ReturnTypes WindowsFileSystemReceiver::getFile(std::string fileName) const
+{
+    if(!fileSystem->isAbsolutePath(fileName))
+        fileName = getDirectory() + fileName;
+
+    int bufSize = 1024; // TODO: Set to variable 
+    char* buffer = new char[bufSize];
+    int readPosition = 0;
+    int bytesRead = 0;
+    
+    do
+    {
+        // use the filesystem interface to read data into our buffer
+        bytesRead = fileSystem->readIntoBuffer(buffer, bufSize, readPosition, fileName);
+        if(bytesRead == -1) return ReturnTypes::INVALID_FILENAME;
+        readPosition += bytesRead;
+
+        // use the communicator interface to send that data over the network
+        communication->send(buffer, bytesRead);
+    }
+    while (bytesRead > 0);
+
+    delete[] buffer;
+    return ReturnTypes::SUCCESS;
+}

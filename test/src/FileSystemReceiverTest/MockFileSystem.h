@@ -58,6 +58,8 @@ class MockFileSystem : public IFileSystem
             return false;
         }
 
+        int readIntoBuffer(char* buffer, int bufSize, int readPosition, std::string fileName);
+
     private:
             // Here are some directories that exist in our fake fileSystem
             // These are valid with or without the ending backslash
