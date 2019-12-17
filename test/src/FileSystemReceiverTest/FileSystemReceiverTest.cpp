@@ -1,35 +1,15 @@
 #include "../../../src/FileSystemReceiver/WindowsFileSystemReceiver.h"
-#include "MockFileSystemReceiver.h"
 #include "MockFileSystem.h"
+#include "../Communicator/MockCommunicator.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
-
-using ::testing::AtLeast;
-
-TEST(FileSystemReceiverTest, ShouldBeConstructed)
-{
-    FileSystemReceiver* fsr = nullptr;
-    EXPECT_EQ(fsr, nullptr);
-
-    fsr = new MockFileSystemReceiver;
-    ASSERT_NE(fsr, nullptr);
-    delete fsr;
-}
-
-TEST(FileSystemReceiverTest, ShouldListDirectory)
-{
-    MockFileSystemReceiver fsr;
-    EXPECT_CALL(fsr, listDirectory())
-        .Times(AtLeast(1));
-
-    fsr.listDirectory();
-}
 
 // Windows Specific Tests
 TEST(WindowsFileSystemReceiverTest, TestChangeDirectoryCommand)
 {
     std::shared_ptr<IFileSystem> fileSystem = std::make_shared<MockFileSystem>();
-    WindowsFileSystemReceiver fsr(fileSystem);
+	std::shared_ptr<ICommunicator> communicator = std::make_shared<MockCommunicator>();
+    WindowsFileSystemReceiver fsr(fileSystem, communicator);
 
 	// Absolute filepath testing
     fsr.changeDirectory("C:\\");
@@ -86,12 +66,17 @@ TEST(WindowsFileSystemReceiverTest, TestChangeDirectoryCommand)
 
 	fsr.changeDirectory("");
 	ASSERT_EQ(fsr.getDirectory(), "C:\\Users\\user\\Desktop\\projects\\");
+
+	// TODO: Make this pass 
+	//fsr.changeDirectory("C:\\Users\\user\\Desktop");
+	//ASSERT_EQ(fsr.getDirectory(), "C:\\Users\\user\\Desktop\\");
 }
 
 TEST(WindowsFileSystemReceiverTest, TestExecuteCommand)
 {
     std::shared_ptr<IFileSystem> fileSystem = std::make_shared<MockFileSystem>();
-    WindowsFileSystemReceiver fsr(fileSystem);
+	std::shared_ptr<ICommunicator> communicator = std::make_shared<MockCommunicator>();
+    WindowsFileSystemReceiver fsr(fileSystem, communicator);
 
 	// We can you execute to run a handful of things
 	// 1) .exe
@@ -139,4 +124,41 @@ TEST(WindowsFileSystemReceiverTest, TestExecuteCommand)
 
 	r = fsr.execute("pwned.exe");
 	ASSERT_EQ(r, ReturnTypes::FAILURE);     
+}
+
+TEST(WindowsFileSystemReceiverTest, TestGetCommand)
+{
+	std::shared_ptr<IFileSystem> fileSystem = std::make_shared<MockFileSystem>();
+	std::shared_ptr<ICommunicator> communicator = std::make_shared<MockCommunicator>();
+	std::shared_ptr<MockCommunicator> mockCommunicator = std::dynamic_pointer_cast<MockCommunicator>(communicator);
+    WindowsFileSystemReceiver fsr(fileSystem, communicator);
+
+	fsr.changeDirectory("C:\\Users\\user\\Desktop\\");
+	ReturnTypes r = fsr.getFile("prefabs.txt");
+	ASSERT_EQ(r, ReturnTypes::SUCCESS);  
+
+	// Validate that we correctly read the data from the filesystem
+	// and sent it through the communicator
+	char* history = mockCommunicator->getHistory();
+	for(int i = 0; i < mockCommunicator->getBufferSize() ; i++)
+	{
+		int* value = (int*)(history + i);
+		ASSERT_EQ(*value, i / 4); // Our mocked Communicator writes integers of incrementing values
+		i += 3;
+	}
+
+	fsr.changeDirectory("C:\\Users\\user\\");
+	r = fsr.getFile("prefabs.txt");
+	ASSERT_EQ(r, ReturnTypes::INVALID_FILENAME);  
+
+	r = fsr.getFile("C:\\Windows\\system32\\Notepad.exe");
+	ASSERT_EQ(r, ReturnTypes::SUCCESS);
+
+	history = mockCommunicator->getHistory();
+	for(int i = 0; i < mockCommunicator->getBufferSize(); i++)
+	{
+		int* value = (int*)(history + i);
+		ASSERT_EQ(*value, i / 4);
+		i += 3;
+	}
 }

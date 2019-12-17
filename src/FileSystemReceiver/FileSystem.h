@@ -1,8 +1,11 @@
 #pragma once
 
+#include "IFileSystem.h"
 #include <filesystem>
 #include <cstdlib>
 #include <string>
+#include <sstream>
+#include <fstream>
 namespace fs = std::filesystem;
 
 class FileSystem : public IFileSystem
@@ -19,19 +22,7 @@ class FileSystem : public IFileSystem
             return path.is_absolute(); 
         }
 
-        inline bool execute(std::string file)
-        {
-            if(!system(NULL)) return false;
-            else
-            {
-                std::stringstream ss;
-                ss << "\"";                                   // command opening quote
-                ss << "\"" << file << "\"";                   // Quoted input (could have spaces)
-                ss << "\"";                                   // command closing quote
-                int returnCode = system( ss.str().c_str() );  // Execute the command
-                if(returnCode != 0) return false;
-            }
-            
-            return true;
-        }
+        bool execute(std::string file);
+
+        int readIntoBuffer(char* buffer, int bufSize, int readPosition, std::string fileName);
 };
