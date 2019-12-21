@@ -1,5 +1,5 @@
 #include "../../../../src/FileSystemReceiver/WindowsFileSystemReceiver.h"
-#include "FileSystemTest/MockFileSystem.h"
+#include "FileSystem/MockWindowsFileSystem.h"
 #include "../Communicator/MockCommunicator.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
@@ -7,7 +7,7 @@
 // Windows Specific Tests
 TEST(WindowsFileSystemReceiverTest, TestChangeDirectoryCommand)
 {
-    std::shared_ptr<IFileSystem> fileSystem = std::make_shared<MockFileSystem>();
+    std::shared_ptr<IFileSystem> fileSystem = std::make_shared<MockWindowsFileSystem>();
 	std::shared_ptr<ICommunicator> communicator = std::make_shared<MockCommunicator>();
     WindowsFileSystemReceiver fsr(fileSystem, communicator);
 
@@ -74,7 +74,7 @@ TEST(WindowsFileSystemReceiverTest, TestChangeDirectoryCommand)
 
 TEST(WindowsFileSystemReceiverTest, TestExecuteCommand)
 {
-    std::shared_ptr<IFileSystem> fileSystem = std::make_shared<MockFileSystem>();
+    std::shared_ptr<IFileSystem> fileSystem = std::make_shared<MockWindowsFileSystem>();
 	std::shared_ptr<ICommunicator> communicator = std::make_shared<MockCommunicator>();
     WindowsFileSystemReceiver fsr(fileSystem, communicator);
 
@@ -128,7 +128,7 @@ TEST(WindowsFileSystemReceiverTest, TestExecuteCommand)
 
 TEST(WindowsFileSystemReceiverTest, TestGetCommand)
 {
-	std::shared_ptr<IFileSystem> fileSystem = std::make_shared<MockFileSystem>();
+	std::shared_ptr<IFileSystem> fileSystem = std::make_shared<MockWindowsFileSystem>();
 	std::shared_ptr<ICommunicator> communicator = std::make_shared<MockCommunicator>();
 	std::shared_ptr<MockCommunicator> mockCommunicator = std::dynamic_pointer_cast<MockCommunicator>(communicator);
     WindowsFileSystemReceiver fsr(fileSystem, communicator);

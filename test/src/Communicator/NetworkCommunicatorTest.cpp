@@ -1,10 +1,10 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
-TEST(FileSystemTest, TestSend)
+TEST(WindowsFileSystemTest, TestSend)
 {
 }
 
-TEST(FileSystemTest, TestReceive)
+TEST(WindowsFileSystemTest, TestReceive)
 {
 }
