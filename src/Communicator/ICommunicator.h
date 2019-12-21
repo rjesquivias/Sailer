@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../FileSystemReceiver/ReturnTypes.h"
+#include "../ReturnTypes.h"
 
 class ICommunicator
 {

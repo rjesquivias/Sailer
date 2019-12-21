@@ -1,12 +1,12 @@
 #ifndef FILE_SYSTEM_RECEIVER_H
 #define FILE_SYSTEM_RECEIVER_H
 
-#include "FileSystemChangeDirectory.h"
-#include "FileSystemExecuteFile.h"
-#include "FileSystemGet.h"
-#include "FileSystemPut.h"
-#include "FileSystemListDirectory.h"
-#include "IFileSystem.h"
+#include "Commands/FileSystemChangeDirectory.h"
+#include "Commands/FileSystemExecuteFile.h"
+#include "Commands/FileSystemGet.h"
+#include "Commands/FileSystemPut.h"
+#include "Commands/FileSystemListDirectory.h"
+#include "FileSystem/IFileSystem.h"
 #include "../Communicator/ICommunicator.h"
 #include <string>
 #include <memory>

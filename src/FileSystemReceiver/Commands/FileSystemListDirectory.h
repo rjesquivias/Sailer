@@ -1,7 +1,7 @@
 #ifndef FILE_SYSTEM_LIST_DIRECTORY_H
 #define FILE_SYSTEM_LIST_DIRECTORY_H
 
-#include "ReturnTypes.h"
+#include "../ReturnTypes.h"
 
 class FileSystemListDirectory {
 public:

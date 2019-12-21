@@ -1,5 +1,5 @@
-#include "../../../src/FileSystemReceiver/WindowsFileSystemReceiver.h"
-#include "MockFileSystem.h"
+#include "../../../../src/FileSystemReceiver/WindowsFileSystemReceiver.h"
+#include "FileSystemTest/MockFileSystem.h"
 #include "../Communicator/MockCommunicator.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
