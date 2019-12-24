@@ -123,7 +123,7 @@ ReturnTypes WindowsFileSystemReceiver::getFile(std::string fileName) const
         readPosition += bytesRead;
 
         // use the communicator interface to send that data over the network
-        communication->send(buffer, bytesRead);
+        this->communication->send(buffer, bytesRead);
     }
     while (bytesRead > 0);
 
