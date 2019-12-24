@@ -59,10 +59,8 @@ bool MockWindowsFileSystem::isAbsolutePath(std::string dir)
         // Absolute path from the current directory
         return true;
     }
-    else
-    {
-        return true;
-    }
+    
+    return true;
 }
 
 bool MockWindowsFileSystem::execute(std::string file)
