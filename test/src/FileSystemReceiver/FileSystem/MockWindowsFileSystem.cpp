@@ -2,11 +2,11 @@
 
 bool MockWindowsFileSystem::isDirectory(std::string directory) 
 { 
-    if(directory.empty()) return false;
+    if(directory.empty()) 
+        return false;
 
     for(auto validDirectory : fileSystemMap)
     {
-        //std::cout << "comparing " << validDirectory << " to " << directory << std::endl;
         if(directory == validDirectory || directory == validDirectory.substr(0, validDirectory.size() - 1))
             return true;
     }
@@ -28,34 +28,41 @@ the path is relative to the current directory.
 */
 bool MockWindowsFileSystem::isAbsolutePath(std::string dir)
 {
-    if(dir.empty()) return false;
+    if(dir.empty()) 
+        return false;
 
     // The directory separator character MUST be backslash (\) NOT forwardslash (/)
     if(!isalpha(dir[0]) && dir[0] != '\\')
-    {
         return false;
-    } 
 
     if(isalpha(dir[0]))
     {
         if(dir.size() >= 2)
         {
-            if(dir[1] != ':') return false; // Must start with "C:" or "D:" etc...
+            // Must start with "C:" or "D:" etc...
+            if(dir[1] != ':') 
+                return false;
 
-            if(dir.size() >= 3) // Strange edge case of form: C:Projects\apilibrary\apilibrary.sln (Relative)
-                if(dir[2] != '\\') return false;
+            // Strange edge case of form: C:Projects\apilibrary\apilibrary.sln (Relative)
+            if(dir.size() >= 3)
+                if(dir[2] != '\\') 
+                    return false;
         }
-        else // "C" or "D" as input... these are not absolute
+        // "C" or "D" as input... these are not absolute
+        else
         {
             return false;
         }
     }
     else if(dir[0] != '\\')
     {
-        return true; // Absolute path from the current directory
+        // Absolute path from the current directory
+        return true;
     }
-    
-    return true;
+    else
+    {
+        return true;
+    }
 }
 
 bool MockWindowsFileSystem::execute(std::string file)
@@ -81,9 +88,12 @@ int MockWindowsFileSystem::readIntoBuffer(char* buffer, int bufSize, int readPos
             fileFound = true;
     }
 
-    if(!fileFound) return -1; // TODO: throw file not found error
+    // TODO: throw file not found error
+    if(!fileFound) 
+        return -1;
 
-    if(readPosition >= endOfFile) // Some hardcoded value denoting EOF
+    // Some hardcoded value denoting EOF
+    if(readPosition >= endOfFile)
     {
         return 0;
     }
@@ -91,12 +101,15 @@ int MockWindowsFileSystem::readIntoBuffer(char* buffer, int bufSize, int readPos
     // Write the integers from readPosition to readPosition + bufSize into the buffer 
     for(int i = 0; i < bufSize; i++)
     {
-        if(readPosition + i >= endOfFile) // hit EOF, end early
+        // hit EOF, end early
+        if(readPosition + i >= endOfFile)
         {
-            return i; // We only read i values, not the entire bufSize
+            // We only read i values, not the entire bufSize
+            return i;
         }
 
-        int integerValue = (readPosition + i) / 4 ; // read into buffer 8 bits at a time
+        // read into buffer 8 bits at a time
+        int integerValue = (readPosition + i) / 4 ;
         int mask = 0xFF;
                                                      // The values we are reading are below
         buffer[i++] = (integerValue & mask);         // 00000000.00000000.00000000.11111111

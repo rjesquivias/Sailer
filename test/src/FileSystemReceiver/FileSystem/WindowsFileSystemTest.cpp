@@ -55,12 +55,12 @@ TEST(WindowsFileSystemTest, TestIsAbsolutePath)
     MockWindowsFileSystem fileSystem;
 
     // https://docs.microsoft.com/en-us/dotnet/standard/io/file-path-formats
-    std::string absolute1 = "C:\\Documents\\Newsletters\\Summer2018.pdf";           // An absolute file path from the root of drive C:
-    std::string absolute2 = "\\Program Files\\Custom Utilities\\StringFinder.exe";	// An absolute path from the root of the current drive.
-    std::string relative1 = "2018\\January.xlsx";	                                // A relative path to a file in a subdirectory of the current directory.
-    std::string relative2 = "..\\Publications\\TravelBrochure.pdf";	                // A relative path to file in a directory that is a peer of the current directory.
-    std::string absolute3 = "C:\\Projects\\apilibrary\\apilibrary.sln";	            // An absolute path to a file from the root of drive C:
-    std::string relative3 = "C:Projects\\apilibrary\\apilibrary.sln";	            // A relative path from the current directory of the C: drive.
+    std::string absolute1 = "C:\\Documents\\Newsletters\\Summer2018.pdf";               // An absolute file path from the root of drive C:
+    std::string absolute2 = "\\Program Files\\Custom Utilities\\StringFinder.exe";      // An absolute path from the root of the current drive.
+    std::string relative1 = "2018\\January.xlsx";                                       // A relative path to a file in a subdirectory of the current directory.
+    std::string relative2 = "..\\Publications\\TravelBrochure.pdf";                     // A relative path to file in a directory that is a peer of the current directory.
+    std::string absolute3 = "C:\\Projects\\apilibrary\\apilibrary.sln";                 // An absolute path to a file from the root of drive C:
+    std::string relative3 = "C:Projects\\apilibrary\\apilibrary.sln";                   // A relative path from the current directory of the C: drive.
 
     ASSERT_EQ(fileSystem.isAbsolutePath(absolute1), true);
     ASSERT_EQ(fileSystem.isAbsolutePath(absolute2), true);
@@ -126,113 +126,113 @@ TEST(WindowsFileSystemTest, TestReadIntoBuffer)
     // We know the filesize of every executable in our mock file system is 1232
     bytesRead = fileSystem.readIntoBuffer(buffer, bufferSize, readPosition, "C:\\Windows\\system32\\Notepad.exe");
     
-    ASSERT_EQ(bytesRead, 128); // 128
+    ASSERT_EQ(bytesRead, bufferSize); // 128
     // Check the actual bits that were written into the buffer
     for(int i = 0; i < bytesRead; i++)
-	{
-		int* value = (int*)(buffer + i);
-		ASSERT_EQ(*value, (readPosition + i) / 4);
-		i += 3;
-	}
+    {
+        int* value = (int*)(buffer + i);
+        ASSERT_EQ(*value, (readPosition + i) / 4);
+        i += 3;
+    }
     readPosition += bytesRead;
 
     bytesRead = fileSystem.readIntoBuffer(buffer, bufferSize, readPosition, "C:\\Windows\\system32\\Notepad.exe");
     ASSERT_EQ(bytesRead, 128); // 256
     // Check the actual bits that were written into the buffer
     for(int i = 0; i < bytesRead; i++)
-	{
-		int* value = (int*)(buffer + i);
-		ASSERT_EQ(*value, (readPosition + i) / 4);
-		i += 3;
-	}
+    {
+        int* value = (int*)(buffer + i);
+        ASSERT_EQ(*value, (readPosition + i) / 4);
+        i += 3;
+    }
     readPosition += bytesRead;
 
     bytesRead = fileSystem.readIntoBuffer(buffer, bufferSize, readPosition, "C:\\Windows\\system32\\Notepad.exe");
     ASSERT_EQ(bytesRead, 128); // 384
     // Check the actual bits that were written into the buffer
     for(int i = 0; i < bytesRead; i++)
-	{
-		int* value = (int*)(buffer + i);
-		ASSERT_EQ(*value, (readPosition + i) / 4);
-		i += 3;
-	}
+    {
+        int* value = (int*)(buffer + i);
+        ASSERT_EQ(*value, (readPosition + i) / 4);
+        i += 3;
+    }
     readPosition += bytesRead;
 
     bytesRead = fileSystem.readIntoBuffer(buffer, bufferSize, readPosition, "C:\\Windows\\system32\\Notepad.exe");
     ASSERT_EQ(bytesRead, 128); // 512
     // Check the actual bits that were written into the buffer
     for(int i = 0; i < bytesRead; i++)
-	{
-		int* value = (int*)(buffer + i);
-		ASSERT_EQ(*value, (readPosition + i) / 4);
-		i += 3;
-	}
+    {
+        int* value = (int*)(buffer + i);
+        ASSERT_EQ(*value, (readPosition + i) / 4);
+        i += 3;
+    }
     readPosition += bytesRead;
 
     bytesRead = fileSystem.readIntoBuffer(buffer, bufferSize, readPosition, "C:\\Windows\\system32\\Notepad.exe");
     ASSERT_EQ(bytesRead, 128); // 640
     // Check the actual bits that were written into the buffer
     for(int i = 0; i < bytesRead; i++)
-	{
-		int* value = (int*)(buffer + i);
-		ASSERT_EQ(*value, (readPosition + i) / 4);
-		i += 3;
-	}
+    {
+        int* value = (int*)(buffer + i);
+        ASSERT_EQ(*value, (readPosition + i) / 4);
+        i += 3;
+    }
     readPosition += bytesRead;
 
     bytesRead = fileSystem.readIntoBuffer(buffer, bufferSize, readPosition, "C:\\Windows\\system32\\Notepad.exe");
     ASSERT_EQ(bytesRead, 128); // 768
     // Check the actual bits that were written into the buffer
     for(int i = 0; i < bytesRead; i++)
-	{
-		int* value = (int*)(buffer + i);
-		ASSERT_EQ(*value, (readPosition + i) / 4);
-		i += 3;
-	}
+    {
+        int* value = (int*)(buffer + i);
+        ASSERT_EQ(*value, (readPosition + i) / 4);
+        i += 3;
+    }
     readPosition += bytesRead;
 
     bytesRead = fileSystem.readIntoBuffer(buffer, bufferSize, readPosition, "C:\\Windows\\system32\\Notepad.exe");
     ASSERT_EQ(bytesRead, 128); // 896
     // Check the actual bits that were written into the buffer
     for(int i = 0; i < bytesRead; i++)
-	{
-		int* value = (int*)(buffer + i);
-		ASSERT_EQ(*value, (readPosition + i) / 4);
-		i += 3;
-	}
+    {
+        int* value = (int*)(buffer + i);
+        ASSERT_EQ(*value, (readPosition + i) / 4);
+        i += 3;
+    }
     readPosition += bytesRead;
 
     bytesRead = fileSystem.readIntoBuffer(buffer, bufferSize, readPosition, "C:\\Windows\\system32\\Notepad.exe");
     ASSERT_EQ(bytesRead, 128); // 1024
     // Check the actual bits that were written into the buffer
     for(int i = 0; i < bytesRead; i++)
-	{
-		int* value = (int*)(buffer + i);
-		ASSERT_EQ(*value, (readPosition + i) / 4);
-		i += 3;
-	}
+    {
+        int* value = (int*)(buffer + i);
+        ASSERT_EQ(*value, (readPosition + i) / 4);
+        i += 3;
+    }
     readPosition += bytesRead;
 
     bytesRead = fileSystem.readIntoBuffer(buffer, bufferSize, readPosition, "C:\\Windows\\system32\\Notepad.exe");
     ASSERT_EQ(bytesRead, 128); // 1152
     // Check the actual bits that were written into the buffer
     for(int i = 0; i < bytesRead; i++)
-	{
-		int* value = (int*)(buffer + i);
-		ASSERT_EQ(*value, (readPosition + i) / 4);
-		i += 3;
-	}
+    {
+        int* value = (int*)(buffer + i);
+        ASSERT_EQ(*value, (readPosition + i) / 4);
+        i += 3;
+    }
     readPosition += bytesRead;
 
     bytesRead = fileSystem.readIntoBuffer(buffer, bufferSize, readPosition, "C:\\Windows\\system32\\Notepad.exe");
     ASSERT_EQ(bytesRead, 80);  // 1232
     // Check the actual bits that were written into the buffer
     for(int i = 0; i < bytesRead; i++)
-	{
-		int* value = (int*)(buffer + i);
-		ASSERT_EQ(*value, (readPosition + i) / 4);
-		i += 3;
-	}
+    {
+        int* value = (int*)(buffer + i);
+        ASSERT_EQ(*value, (readPosition + i) / 4);
+        i += 3;
+    }
     readPosition += bytesRead;
 
     bytesRead = fileSystem.readIntoBuffer(buffer, bufferSize, readPosition, "C:\\Windows\\system32\\Notepad.exe");
