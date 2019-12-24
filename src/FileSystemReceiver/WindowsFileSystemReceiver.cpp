@@ -2,14 +2,18 @@
 
 ReturnTypes WindowsFileSystemReceiver::changeDirectory(std::string dir) 
 {
-    if(dir.empty())
+    if (dir.empty())
+    {
         return ReturnTypes::INVALID_INPUT; 
+    }
 
     // Format dir...Change all forward to backward slashes
     for (int i = 0; i < dir.size(); i++)
     {
         if (dir[i] == '/')
+        {
             dir[i] = '\\';
+        }
     }
 
     if(this->fileSystem->isAbsolutePath(dir))
@@ -36,7 +40,9 @@ ReturnTypes WindowsFileSystemReceiver::changeDirectory(std::string dir)
             std::string nextLocation = (endPos == std::string::npos) ? dir : dir.substr(0, endPos + 1);
             
             if (nextLocation.back() != '\\')
+            {
                 nextLocation.push_back('\\');
+            }
 
             dir = (endPos == std::string::npos) ? "" : dir.substr(endPos + 1);
 
@@ -57,7 +63,9 @@ ReturnTypes WindowsFileSystemReceiver::changeDirectory(std::string dir)
 
                 // Safely ignore if we are at the root drive
                 if (endPos == 0)
+                {
                     continue;
+                }
 
                 // Trim top directory while keeping the trailing '\'
                 newDirectory = newDirectory.substr(0, endPos + 1);
@@ -83,7 +91,9 @@ ReturnTypes WindowsFileSystemReceiver::changeDirectory(std::string dir)
 ReturnTypes WindowsFileSystemReceiver::execute(std::string file)
 {
     if (file.empty())
+    {
         return ReturnTypes::INVALID_INPUT;
+    }
 
     bool status = this->fileSystem->isAbsolutePath(file) ? this->fileSystem->execute(file) : this->fileSystem->execute(getDirectory() + file);
     return status ? ReturnTypes::SUCCESS : ReturnTypes::FAILURE;
@@ -92,7 +102,9 @@ ReturnTypes WindowsFileSystemReceiver::execute(std::string file)
 ReturnTypes WindowsFileSystemReceiver::getFile(std::string fileName) const
 {
     if (!this->fileSystem->isAbsolutePath(fileName))
+    {
         fileName = getDirectory() + fileName;
+    }
 
     char* buffer = new char[bufSize];
     int readPosition = 0;
@@ -102,7 +114,12 @@ ReturnTypes WindowsFileSystemReceiver::getFile(std::string fileName) const
     {
         // use the filesystem interface to read data into our buffer
         bytesRead = this->fileSystem->readIntoBuffer(buffer, bufSize, readPosition, fileName);
-        if(bytesRead == -1) return ReturnTypes::INVALID_FILENAME;
+
+        if (bytesRead == -1)
+        {
+            return ReturnTypes::INVALID_FILENAME;
+        }
+
         readPosition += bytesRead;
 
         // use the communicator interface to send that data over the network

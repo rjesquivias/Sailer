@@ -2,13 +2,17 @@
 
 bool MockWindowsFileSystem::isDirectory(std::string directory) 
 { 
-    if(directory.empty()) 
+    if (directory.empty())
+    {
         return false;
+    }
 
     for(auto validDirectory : fileSystemMap)
     {
-        if(directory == validDirectory || directory == validDirectory.substr(0, validDirectory.size() - 1))
+        if (directory == validDirectory || directory == validDirectory.substr(0, validDirectory.size() - 1))
+        {
             return true;
+        }
     }
 
     // Fail if we could not prove we are in a valid directory
@@ -28,25 +32,35 @@ the path is relative to the current directory.
 */
 bool MockWindowsFileSystem::isAbsolutePath(std::string dir)
 {
-    if(dir.empty()) 
+    if (dir.empty())
+    {
         return false;
+    }
 
     // The directory separator character MUST be backslash (\) NOT forwardslash (/)
-    if(!isalpha(dir[0]) && dir[0] != '\\')
+    if (!isalpha(dir[0]) && dir[0] != '\\')
+    {
         return false;
+    }
 
     if(isalpha(dir[0]))
     {
         if(dir.size() >= 2)
         {
             // Must start with "C:" or "D:" etc...
-            if(dir[1] != ':') 
+            if (dir[1] != ':')
+            {
                 return false;
+            }
 
             // Strange edge case of form: C:Projects\apilibrary\apilibrary.sln (Relative)
-            if(dir.size() >= 3)
-                if(dir[2] != '\\') 
+            if (dir.size() >= 3)
+            {
+                if (dir[2] != '\\')
+                {
                     return false;
+                }
+            }
         }
         // "C" or "D" as input... these are not absolute
         else
@@ -67,8 +81,10 @@ bool MockWindowsFileSystem::execute(std::string file)
 {
     for(auto validExecutable : executableMap)
     {
-        if(file == validExecutable)
+        if (file == validExecutable)
+        {
             return true;
+        }
     }
 
     return false;
@@ -82,13 +98,17 @@ int MockWindowsFileSystem::readIntoBuffer(char* buffer, int bufSize, int readPos
     bool fileFound = false;
     for(auto validExecutable : executableMap)
     {
-        if(fileName == validExecutable)
+        if (fileName == validExecutable)
+        {
             fileFound = true;
+        }
     }
 
     // TODO: throw file not found error
-    if(!fileFound) 
+    if (!fileFound)
+    {
         return -1;
+    }
 
     // Some hardcoded value denoting EOF
     if(readPosition >= endOfFile)
