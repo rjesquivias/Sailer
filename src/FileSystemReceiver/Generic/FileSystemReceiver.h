@@ -1,11 +1,11 @@
 #ifndef FILE_SYSTEM_RECEIVER_H
 #define FILE_SYSTEM_RECEIVER_H
 
-#include "FileSystemChangeDirectory.h"
-#include "FileSystemExecuteFile.h"
-#include "FileSystemIsFileAtCurrentDirectory.h"
-#include "FileSystemIsFileAtGivenDirectory.h"
-#include "FileSystemListDirectory.h"
+#include "Commands/FileSystemChangeDirectory.h"
+#include "Commands/FileSystemExecuteFile.h"
+#include "Commands/FileSystemIsFileAtCurrentDirectory.h"
+#include "Commands/FileSystemIsFileAtGivenDirectory.h"
+#include "Commands/FileSystemListDirectory.h"
 #include "IFileSystem.h"
 #include <string>
 #include <memory>
