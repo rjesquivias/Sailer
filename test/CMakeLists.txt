@@ -33,5 +33,5 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
                         "${gmock_SOURCE_DIR}/include")
 endif()
 
-add_executable(SailerTest ${source_list})
+add_executable(SailerTest ${source_list} ../src/FileSystemReceiver/Windows/WindowsFileSystemReceiver.cpp)
 target_link_libraries(SailerTest gtest gmock_main)
