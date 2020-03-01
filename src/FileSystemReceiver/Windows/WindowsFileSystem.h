@@ -1,6 +1,11 @@
 #pragma once
 
+#include "IFileSystem.h"
 #include <filesystem>
+#include <cstdlib>
+#include <string>
+#include <sstream>
+#include <fstream>
 namespace fs = std::filesystem;
 
 class FileSystem : public IFileSystem
@@ -16,4 +21,8 @@ class FileSystem : public IFileSystem
             fs::path path(dir); // Construct the path from a string.
             return path.is_absolute(); 
         }
+
+        bool execute(std::string file);
+
+        int readIntoBuffer(char* buffer, int bufSize, int readPosition, std::string fileName);
 };
