@@ -328,6 +328,8 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+.vscode/
 *.vcxproj
 *.filters
 cmake_install.cmake

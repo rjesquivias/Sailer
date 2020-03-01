@@ -1,7 +1,7 @@
 #ifndef FILE_SYSTEM_CHANGE_DIRECTORY_H
 #define FILE_SYSTEM_CHANGE_DIRECTORY_H
 
-#include "../../../Types/ReturnTypes.h"
+#include "../../Types/ReturnTypes.h"
 #include <string>
 
 class FileSystemChangeDirectory {
