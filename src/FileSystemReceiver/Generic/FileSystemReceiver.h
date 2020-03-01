@@ -1,20 +1,13 @@
 #ifndef FILE_SYSTEM_RECEIVER_H
 #define FILE_SYSTEM_RECEIVER_H
 
-#include "Commands/FileSystemChangeDirectory.h"
-#include "Commands/FileSystemExecuteFile.h"
-<<<<<<< HEAD:src/FileSystemReceiver/Generic/FileSystemReceiver.h
-#include "Commands/FileSystemIsFileAtCurrentDirectory.h"
-#include "Commands/FileSystemIsFileAtGivenDirectory.h"
-#include "Commands/FileSystemListDirectory.h"
+#include "../Commands/FileSystemChangeDirectory.h"
+#include "../Commands/FileSystemExecuteFile.h"
+#include "../Commands/FileSystemGet.h"
+#include "../Commands/FileSystemPut.h"
+#include "../Commands/FileSystemListDirectory.h"
 #include "IFileSystem.h"
-=======
-#include "Commands/FileSystemGet.h"
-#include "Commands/FileSystemPut.h"
-#include "Commands/FileSystemListDirectory.h"
-#include "FileSystem/IFileSystem.h"
-#include "../Communicator/ICommunicator.h"
->>>>>>> 91749ce1dc94d6865f43a83757ebf95f0478a42c:src/FileSystemReceiver/FileSystemReceiver.h
+#include "../../Communicator/ICommunicator.h"
 #include <string>
 #include <memory>
 

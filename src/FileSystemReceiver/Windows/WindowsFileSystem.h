@@ -1,6 +1,8 @@
 #pragma once
 
-#include "IFileSystem.h"
+#ifdef windows
+
+#include "../Generic/IFileSystem.h"
 #include <filesystem>
 #include <cstdlib>
 #include <string>
@@ -26,3 +28,5 @@ class FileSystem : public IFileSystem
 
         int readIntoBuffer(char* buffer, int bufSize, int readPosition, std::string fileName);
 };
+
+#endif

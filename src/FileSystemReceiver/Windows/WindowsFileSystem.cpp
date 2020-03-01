@@ -1,5 +1,7 @@
 #include "WindowsFileSystem.h"
 
+#ifdef windows
+
 bool FileSystem::execute(std::string file)
 {
     if (!system(NULL))
@@ -35,3 +37,5 @@ int FileSystem::readIntoBuffer(char* buffer, int bufSize, int readPosition, std:
 
     return is.gcount();
 }
+
+#endif

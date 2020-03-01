@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../../src/FileSystemReceiver/FileSystem/IFileSystem.h"
+#include "../../../../src/FileSystemReceiver/Generic/IFileSystem.h"
 #include "gmock/gmock.h"
 #include <string>
 #include <ctype.h>

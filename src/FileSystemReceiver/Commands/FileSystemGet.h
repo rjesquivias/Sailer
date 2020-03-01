@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../ReturnTypes.h"
+#include "../../Types/ReturnTypes.h"
 #include <string>
 
 class FileSystemGet {
