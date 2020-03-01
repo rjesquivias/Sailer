@@ -1,7 +1,7 @@
 #ifndef WINDOWS_FILE_SYSTEM_RECEIVER_H
 #define WINDOWS_FILE_SYSTEM_RECEIVER_H
 
-#include "FileSystemReceiver.h"
+#include "../Generic/FileSystemReceiver.h"
 
 class WindowsFileSystemReceiver : public FileSystemReceiver
 {

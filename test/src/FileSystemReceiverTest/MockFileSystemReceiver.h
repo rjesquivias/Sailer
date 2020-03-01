@@ -1,7 +1,7 @@
 #ifndef MOCK_FILE_SYSTEM_RECEIVER_H
 #define MOCK_FILE_SYSTEM_RECEIVER_H
 
-#include "../../../src/FileSystemReceiver/FileSystemReceiver.h"
+#include "../../../src/FileSystemReceiver/Generic/FileSystemReceiver.h"
 #include "gmock/gmock.h"
 
 class MockFileSystemReceiver : public FileSystemReceiver
